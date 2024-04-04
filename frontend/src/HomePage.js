@@ -9,23 +9,23 @@ const HomePage = () => {
         <Container component="main" style={{ textAlign: "center", marginTop: "25px" }}>
         <CssBaseline>
             <div>
-                <Typography variant='h3'>This Title</Typography>
+                <Typography variant='h3'>Bookstore!</Typography>
                 <form>
                     <Button
                     type="button"
                     variant="outlined"
                     color="primary"
-                    >Admin Page</Button>
+                    >Admin View</Button>
                     <Button
                     type="button"
                     variant="outlined"
                     color="primary"
-                    >Admin Page</Button>
+                    >Book & Merchandise</Button>
                     <Button
                     type="button"
                     variant="outlined"
                     color="primary"
-                    >Admin Page</Button>
+                    >Customer View</Button>
                 </form>
             </div>
         </CssBaseline>
