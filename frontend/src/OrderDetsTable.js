@@ -71,7 +71,7 @@ function OrderDetsTable() {
         return <Navigate to='/CustomerTable' />
     }
     if (goToOrdering) {
-        return <Navigate to='/Ordering' />
+        return <Navigate to='/OrderingPage' />
     }
 
     return (
