@@ -8,7 +8,7 @@ import InventoryTable from './InventoryTable'
 import OrderTable from './OrderTable'
 import OrderDetsTable from './OrderDetsTable'
 import CustomerTable from './CustomerTable'
-import Ordering from './Ordering'
+import OrderingPage from './OrderingPage'
 
 function App() {
   return (
@@ -22,7 +22,6 @@ function App() {
         <Route path='/OrderTable' element={ <OrderTable></OrderTable> }></Route>
         <Route path='/OrderDetsTable' element={ <OrderDetsTable></OrderDetsTable> }></Route>
         <Route path='/CustomerTable' element={ <CustomerTable></CustomerTable> }></Route>
-        <Route path='/Ordering' element={ <Ordering></Ordering> }></Route>
       </Routes>
     </Router>
   );
