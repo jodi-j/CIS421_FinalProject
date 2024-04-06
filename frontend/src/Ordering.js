@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-function ButtonAppBar() {
+function Ordering() {
 
     const [goToBooks, setGoToBooks] = React.useState(false);
     const [goToMerch, setGoToMerch] = React.useState(false);
@@ -93,4 +93,4 @@ function ButtonAppBar() {
     );
   }
 
-  export default ButtonAppBar;
+  export default Ordering;
