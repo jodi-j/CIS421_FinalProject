@@ -5,7 +5,7 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'bookstoreAdmin',
-    password: 'blankfornow',
+    password: 'pa55w0rd',
     database: 'bookstoredb',
 });
 
