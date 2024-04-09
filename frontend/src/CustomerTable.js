@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
-import { Navigate } from "react-router-dom"
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
     tableCellClasses } from '@mui/material';
 import './HomePage.css';
@@ -25,99 +24,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(CustID, FName, LName, PhoneNum, Email) {
-    return {CustID, FName, LName, PhoneNum, Email}
+function createData(CustID, FName, LName, PhoneNum, Email, ShippingAddress) {
+    return {CustID, FName, LName, PhoneNum, Email, ShippingAddress}
 }
 
 const rows = [
-    createData(1234, "Harry", "Potter", "123456789", "imawizardharry@gmail.com"),
-    createData(5678, "Ron", "Weasley", "987654321", "myratispeterpettigrew@hotmail.com")
+    createData(1234, "Harry", "Potter", "123456789", "imawizardharry@gmail.com", "34 Privet Drive"),
+    createData(5678, "Ron", "Weasley", "987654321", "myratispeterpettigrew@hotmail.com", "Hogwarts")
 ]
 
 function CustomerTable() {
-    // const [goToBooks, setGoToBooks] = React.useState(false);
-    // const [goToMerch, setGoToMerch] = React.useState(false);
-    // const [goToInventory, setGoToInventory] = React.useState(false);
-    // const [goToOrder, setGoToOrder] = React.useState(false);
-    // const [goToOrderDets, setGoToOrderDets] = React.useState(false);
-    // const [goToCust, setGoToCust] = React.useState(false);
-    // const [goToOrdering, setGoToOrdering] = React.useState(false);
-
-    // if (goToBooks) {
-    //     return <Navigate to="/BooksTable" />
-    // }
-    // if (goToMerch) {
-    //     return <Navigate to="/MerchTable" />
-    // }
-    // if (goToInventory) {
-    //     return <Navigate to='/InventoryTable' />
-    // }
-    // if (goToOrder) {
-    //     return <Navigate to='/OrderTable' />
-    // }
-    // if (goToOrderDets) {
-    //     return <Navigate to='/OrderDetsTable' />
-    // }
-    // if (goToCust) {
-    //     return <Navigate to='/CustomerTable' />
-    // }
-    // if (goToOrdering) {
-    //     return <Navigate to='/OrderingPage' />
-    // }
 
     return (
         <div>
-        {/* <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Bookstore!
-                </Typography>
-
-                <Button color="inherit"
-                onClick={() => {
-                    setGoToBooks(true);
-                }}
-                >Books</Button>
-                
-                <Button color="inherit"
-                    onClick={() => {
-                        setGoToMerch(true);
-                    }}
-                >Merchandise</Button>
-
-                <Button color="inherit"
-                    onClick={() => {
-                        setGoToInventory(true);
-                    }}
-                >Inventory</Button>
-
-                <Button color="inherit"
-                    onClick={() => {
-                        setGoToOrder(true);
-                    }}
-                >Orders</Button>
-
-                <Button color="inherit"
-                    onClick={() => {
-                        setGoToOrderDets(true);
-                    }}
-                >Order Details</Button>
-
-                <Button color="inherit"
-                    onClick={() => {
-                        setGoToCust(true);
-                    }}
-                >Customer</Button>
-
-                <Button color="inherit"
-                    onClick={() => {
-                        setGoToOrdering(true);
-                    }}
-                >Ordering Interface</Button>
-            </Toolbar>
-            </AppBar>
-        </Box> */}
         <Navbar/>
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700, marginTop:2 }} aria-label="customized table">
@@ -128,6 +47,7 @@ function CustomerTable() {
                         <StyledTableCell align="right">Last Name</StyledTableCell>
                         <StyledTableCell align="right">Phone Number</StyledTableCell>
                         <StyledTableCell align="right">Email</StyledTableCell>
+                        <StyledTableCell align="right">Shipping Address</StyledTableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -140,6 +60,7 @@ function CustomerTable() {
                     <StyledTableCell align="right">{row.LName}</StyledTableCell>
                     <StyledTableCell align="right">{row.PhoneNum}</StyledTableCell>
                     <StyledTableCell align="right">{row.Email}</StyledTableCell>
+                    <StyledTableCell align="right">{row.ShippingAddress}</StyledTableCell>
                     </StyledTableRow>
                 ))}
             </TableBody>

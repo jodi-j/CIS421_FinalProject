@@ -8,19 +8,15 @@ import Button from '@mui/material/Button';
 
 function ButtonAppBar() {
 
-    const [goToBooks, setGoToBooks] = React.useState(true);
-    const [goToMerch, setGoToMerch] = React.useState(false);
+    const [goToProducts, setGoToProducts] = React.useState(true);
     const [goToInventory, setGoToInventory] = React.useState(false);
     const [goToOrder, setGoToOrder] = React.useState(false);
     const [goToOrderDets, setGoToOrderDets] = React.useState(false);
     const [goToCust, setGoToCust] = React.useState(false);
     const [goToOrdering, setGoToOrdering] = React.useState(false);
 
-    if (goToBooks) {
-        return <Navigate to="/BooksTable" />
-    }
-    if (goToMerch) {
-        return <Navigate to="/MerchTable" />
+    if (goToProducts) {
+        return <Navigate to="/ProductsTable" />
     }
     if (goToInventory) {
         return <Navigate to='/InventoryTable' />
@@ -48,15 +44,9 @@ function ButtonAppBar() {
 
             <Button color="inherit"
                 onClick={() => {
-                    setGoToBooks(true);
+                    setGoToProducts(true);
                 }}
             >Books</Button>
-            
-            <Button color="inherit"
-                onClick={() => {
-                    setGoToMerch(true);
-                }}
-            >Merchandise</Button>
 
             <Button color="inherit"
                 onClick={() => {

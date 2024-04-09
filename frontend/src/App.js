@@ -2,8 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './HomePage';
-import BookTable from './BooksTable';
-import MerchandiseTable from './MerchandiseTable';
+import ProductsTable from './ProductsTable';
 import InventoryTable from './InventoryTable'
 import OrderTable from './OrderTable'
 import OrderDetsTable from './OrderDetsTable'
@@ -16,8 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <HomePage/>}></Route>
         <Route path='/OrderingPage' element={ <OrderingPage/> }></Route>
-        <Route path='/BooksTable' element={ <BookTable></BookTable> }></Route>
-        <Route path='/MerchTable' element={ <MerchandiseTable></MerchandiseTable> }></Route>
+        <Route path='/ProductsTable' element={ <ProductsTable></ProductsTable> }></Route>
         <Route path='/InventoryTable' element={ <InventoryTable></InventoryTable> }></Route>
         <Route path='/OrderTable' element={ <OrderTable></OrderTable> }></Route>
         <Route path='/OrderDetsTable' element={ <OrderDetsTable></OrderDetsTable> }></Route>

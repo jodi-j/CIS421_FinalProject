@@ -1,9 +1,7 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
-import { Navigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
     tableCellClasses } from '@mui/material';
-
 import './HomePage.css';
 import Navbar from "./Navbar";
 
@@ -26,17 +24,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(Title, ItemID, IBSN, Author, PublishDate, Publisher, Price) {
-    return { Title, ItemID, IBSN, Author, PublishDate, Publisher, Price };
+function createData(ItemID, Name, Type, IBSN, Title, Author, PublishDate, Publisher, Price) {
+    return { ItemID, Name, Type, IBSN, Title, Author, PublishDate, Publisher, Price };
 }
 
 const rows = [
-    createData("Book 1", "BOOK-1", 1, "Author 1", "Date 1", "Publisher 1", "$10.99"),
-    createData("Book 2", "BOOK-2", 2, "Author 2", "Date 2", "Publisher 2", "$9.99")
+    createData(1, "Book 1 Name", "Book", "IBSN1", "Book 1 Title", "Author 1", "Date 1", "Publisher 1", "10.99"),
+    createData(2, "Book 2 Name", "Book", "IBSN2", "Book 2 Title", "Author 2", "Date 2", "Publisher 2", "20.99"),
+    createData(3, "Canvas Tote Bag", "Merchandise", "null", "null", "null", "null", "null", "9.99")
 ];
 
-function BookTable() {
-    
+function ProductsTable() {
 
     return (
         <div>
@@ -46,9 +44,11 @@ function BookTable() {
             <Table sx={{ minWidth: 700, marginTop:2 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell>Book Title</StyledTableCell>
-                        <StyledTableCell align="right">ItemID</StyledTableCell>
+                        <StyledTableCell>ID</StyledTableCell>
+                        <StyledTableCell align="right">Name</StyledTableCell>
+                        <StyledTableCell align="right">Type</StyledTableCell>
                         <StyledTableCell align="right">IBSN</StyledTableCell>
+                        <StyledTableCell align="right">Title</StyledTableCell>
                         <StyledTableCell align="right">Author</StyledTableCell>
                         <StyledTableCell align="right">PublishDate</StyledTableCell>
                         <StyledTableCell align="right">Publisher</StyledTableCell>
@@ -57,12 +57,14 @@ function BookTable() {
             </TableHead>
             <TableBody>
                 {rows.map((row) => (
-                    <StyledTableRow key={row.Title}>
+                    <StyledTableRow key={row.ItemID}>
                     <StyledTableCell component="th" scope="row">
-                        {row.Title}
+                        {row.ItemID}
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.ItemID}</StyledTableCell>
+                    <StyledTableCell align="right">{row.Name}</StyledTableCell>
+                    <StyledTableCell align="right">{row.Type}</StyledTableCell>
                     <StyledTableCell align="right">{row.IBSN}</StyledTableCell>
+                    <StyledTableCell align="right">{row.Title}</StyledTableCell>
                     <StyledTableCell align="right">{row.Author}</StyledTableCell>
                     <StyledTableCell align="right">{row.PublishDate}</StyledTableCell>
                     <StyledTableCell align="right">{row.Publisher}</StyledTableCell>
@@ -76,4 +78,4 @@ function BookTable() {
     )
 }
 
-export default BookTable;
+export default ProductsTable;

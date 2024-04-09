@@ -7,11 +7,10 @@ const Navbar = () => {
         <AppBar position="static">
         <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Bookstore!
+            Bookstore Database!
             </Typography>
             <Box>
-            <Button color="inherit" component={Link} to="/BooksTable">Books</Button>
-            <Button color="inherit" component={Link} to="/MerchTable">Merchandise</Button>
+            <Button color="inherit" component={Link} to="/ProductsTable">Products</Button>
             <Button color="inherit" component={Link} to="/InventoryTable">Inventory</Button>
             <Button color="inherit" component={Link} to="/OrderTable">Orders</Button>
             <Button color="inherit" component={Link} to="/OrderDetsTable">Order Details</Button>
