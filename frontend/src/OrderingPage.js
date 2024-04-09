@@ -1,5 +1,6 @@
 import { TextField, Button, Typography, Container, CssBaseline } from '@mui/material';
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 const OrderingPage = () => {
 
@@ -21,7 +22,9 @@ const OrderingPage = () => {
     }
 
     return(
-        <Container component="main" style={{ textAlign: 'center', marginTop: "50px"}}>
+      <div>
+        <Navbar/>
+        <Container component="main" style={{ textAlign: 'center', marginTop: '10px'}}>
         <div>
           <Typography variant="h4">Ordering</Typography>
           {items.map((item, index) => (
@@ -92,6 +95,7 @@ const OrderingPage = () => {
           </form>
         </div>
       </Container>
+      </div>
     )
 }
 
