@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
@@ -46,9 +47,12 @@ function ProductsTable() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
-                console.log("Data:", data);
-                setBooks(data);
+                console.log("eh")
+                //This is causing issues
+                console.log(response.json());
+                //const data = await response.json();
+                //console.log("Data:", data);
+                //setBooks(data);
 
             }catch(error){
                 console.error('Error fetching books:', error);
