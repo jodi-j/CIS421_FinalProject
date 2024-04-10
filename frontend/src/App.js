@@ -13,9 +13,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={ <HomePage/>}></Route>
+        <Route path='/' element={ <ProductsTable/>}></Route>
         <Route path='/OrderingPage' element={ <OrderingPage/> }></Route>
-        <Route path='/ProductsTable' element={ <ProductsTable></ProductsTable> }></Route>
+        {/* <Route path='/ProductsTable' element={ <ProductsTable></ProductsTable> }></Route> */}
         <Route path='/InventoryTable' element={ <InventoryTable></InventoryTable> }></Route>
         <Route path='/OrderTable' element={ <OrderTable></OrderTable> }></Route>
         <Route path='/OrderDetsTable' element={ <OrderDetsTable></OrderDetsTable> }></Route>

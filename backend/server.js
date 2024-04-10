@@ -1,6 +1,6 @@
 
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const app = express();
 const pool = require('./db');
 
@@ -23,5 +23,5 @@ app.get('/getBooks', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {console.log("Server started on port 3000")})

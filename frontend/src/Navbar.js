@@ -10,7 +10,7 @@ const Navbar = () => {
             Bookstore Database!
             </Typography>
             <Box>
-            <Button color="inherit" component={Link} to="/ProductsTable">Products</Button>
+            <Button color="inherit" component={Link} to="/">Products</Button>
             <Button color="inherit" component={Link} to="/InventoryTable">Inventory</Button>
             <Button color="inherit" component={Link} to="/OrderTable">Orders</Button>
             <Button color="inherit" component={Link} to="/OrderDetsTable">Order Details</Button>

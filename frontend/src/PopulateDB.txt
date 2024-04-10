@@ -1,0 +1,65 @@
+ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255),
+    Type VARCHAR(20), -- 'Book' or 'Merchandise'
+    ISBN VARCHAR(25), -- Only for books
+    Title VARCHAR(255), -- Only for books
+    Author VARCHAR(255), -- Only for books
+    PublishDate DATE, -- Only for books
+    Publisher VARCHAR(255), -- Only for books
+    Price DECIMAL(10, 2)
+
+
+
+insert into Products values (1,"To Kill a Mockingbird", "Book", "978-0-385-52712-8", "To Kill a Mockingbird", 
+                             "Harper Lee", "1960-07-11", "J. B. Lippincott & Co.", 10.99);
+insert into Products values (2, "The Catcher in the Rye", "Book", "978-0-7432-4723-7", "The Catcher in the Rye",
+                            "J. D. Salinger", "1951-07-16", "Little, Brown and Company", 9.99);
+INSERT INTO Products (name, type, isbn, title, author, publishdate, publisher, price) values ("1984", "Book", "978-1-4165-9161-9", "1984",
+                            "George Orwell", "1949-06-08", "Harcourt, Brace & Company", 12.99);
+insert into Products (name, type, isbn, title, author, publishdate, publisher, price) values ("The Great Gatsby", "Book", "978-0-375-50146-7", "The Great Gatsby",
+                            "F. Scott Fitzgerald", "1925-04-10", "Charles Scribner's Sons", 8.99);
+insert into Products (name, type, isbn, title, author, publishdate, publisher, price) values ("The Alchemist", "Book", "978-0-15-603032-5", "The Alchemist",
+                            "Paulo Coelho", "1993-04-25", "HarperCollins", 14.99);
+insert into Products (ID, Name, Type, Price) values (6, "Stationery and Journals", "Merchandise", 18.99);
+insert into Products (ID, Name, Type, Price) values (7, "Canvas Tote Bags", "Merchandise", 12.99);
+insert into Products (ID, Name, Type, Price) values (8, "Music Vinyl Records", "Merchandise", 29.99);
+insert into Products (ID, Name, Type, Price) values (9, "Assorted Bookmarks (Pack of 5)", "Merchandise", 12.99);
+insert into Products (ID, Name, Type, Price) values (10, "Audio Cassettes (Vintage Collection)", "Merchandise", 19.99);
+
+insert into Products (name, type, isbn, title, author, date, publisher, price)
+ values (1,"To Kill a Mockingbird", "Book", "978-0-385-52712-8", "To Kill a Mockingbird", 
+                             "Harper Lee", "1960-07-11", "J. B. Lippincott & Co.", 10.99);
+
+insert into Inventory values (1, 5);
+insert into Inventory values (2, 9);
+insert into Inventory values (3, 50);
+insert into Inventory values (4, 59);
+insert into Inventory values (5, 64);
+insert into Inventory VALUES (6, 85);
+insert into Inventory VALUES (7, 25);
+insert into Inventory values (8, 67);
+insert into Inventory VALUES (9, 74);
+insert into Inventory values (10, 23);
+
+
+insert into Customers values (1, "John", "Smith", "(555) 123-4567", "john.smith@example.com", "123 Main Street, Anytown, USA");
+insert into Customers values (2, "Emily", "Johnson", "(555) 987-6543", "emily.johnson@example.com", "456 Oak Avenue, Smallville, USA");
+insert into Customers values (3, "Michael", "Brown", "(555) 321-7890", "michael.brown@example.com", "789 Elm Road, Cityville, USA");
+insert into Customers values (4, "Sarah", "Davis", "(555) 999-8888", "sarah.davis@example.com", "101 Pine Lane, Villagetown, USA");
+insert into Customers values (5, "William", "Taylor", "(555) 444-3333", "william.taylor@example.com", "202 Maple Street, Countryside, USA");
+                              
+
+
+insert into Orders values (1, 1, "April 2, 2024", 10.99, "123 Main Street, Anytown, USA");
+insert into Orders values (2, 2, "March 28, 2024", 14.99, "456 Oak Avenue, Smallville, USA");
+insert into Orders values (3, 3, "April 5, 2024", 12.99, "789 Elm Road, Cityville, USA");
+insert into Orders values (4, 4, "April 1, 2024", 4.99, "101 Pine Lane, Villagetown, USA");
+insert into Orders VALUES (5, 5, "March 30, 2024", 19.99, "202 Maple Street, Countryside, USA");
+
+
+insert into OrderDetails values (1, 1, 1);
+insert into OrderDetails Values (2, 5, 1);
+insert into OrderDetails values (3, 7, 1);
+insert into OrderDetails values (4, 9, 1);
+insert into OrderDetails values (5, 10, 1);
+

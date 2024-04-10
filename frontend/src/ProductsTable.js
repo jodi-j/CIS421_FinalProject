@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
-    tableCellClasses } from '@mui/material';
+    tableCellClasses, Container } from '@mui/material';
 import './HomePage.css';
 import Navbar from "./Navbar";
 
@@ -36,12 +36,47 @@ const rows = [
 
 function ProductsTable() {
 
+    const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await fetch('/getBooks');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                console.log("Data:", data);
+                setBooks(data);
+
+            }catch(error){
+                console.error('Error fetching books:', error);
+            }
+        }
+
+        fetchBooks();
+    },[]);
+
     return (
         <div>
+            { <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    opacity: 0.8, 
+                    zIndex: -1,
+                }} />}
         <Navbar/>
 
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700, marginTop:2 }} aria-label="customized table">
+        <TableContainer component={Paper} style={{width: '75%', margin: 'auto', marginTop: '20px'}}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>ID</StyledTableCell>
@@ -56,19 +91,19 @@ function ProductsTable() {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {rows.map((row) => (
-                    <StyledTableRow key={row.ItemID}>
+                {books.map((book) => (
+                    <StyledTableRow key={book.ItemID}>
                     <StyledTableCell component="th" scope="row">
-                        {row.ItemID}
+                        {book.ID}
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.Name}</StyledTableCell>
-                    <StyledTableCell align="right">{row.Type}</StyledTableCell>
-                    <StyledTableCell align="right">{row.IBSN}</StyledTableCell>
-                    <StyledTableCell align="right">{row.Title}</StyledTableCell>
-                    <StyledTableCell align="right">{row.Author}</StyledTableCell>
-                    <StyledTableCell align="right">{row.PublishDate}</StyledTableCell>
-                    <StyledTableCell align="right">{row.Publisher}</StyledTableCell>
-                    <StyledTableCell align="right">{row.Price}</StyledTableCell>
+                    <StyledTableCell align="right">{book.Name}</StyledTableCell>
+                    <StyledTableCell align="right">{book.Type}</StyledTableCell>
+                    <StyledTableCell align="right">{book.ISBN}</StyledTableCell>
+                    <StyledTableCell align="right">{book.Title}</StyledTableCell>
+                    <StyledTableCell align="right">{book.Author}</StyledTableCell>
+                    <StyledTableCell align="right">{book.PublishDate}</StyledTableCell>
+                    <StyledTableCell align="right">{book.Publisher}</StyledTableCell>
+                    <StyledTableCell align="right">{book.Price}</StyledTableCell>
                     </StyledTableRow>
                 ))}
             </TableBody>

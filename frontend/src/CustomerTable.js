@@ -35,11 +35,26 @@ const rows = [
 
 function CustomerTable() {
 
+    const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
+
     return (
         <div>
+            { <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    opacity: 0.8, 
+                    zIndex: -1,
+                }} />}
         <Navbar/>
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700, marginTop:2 }} aria-label="customized table">
+        <TableContainer component={Paper} style={{width: '75%', margin: 'auto', marginTop: '10px'}}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>CustID</StyledTableCell>
