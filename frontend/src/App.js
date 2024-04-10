@@ -8,12 +8,14 @@ import OrderTable from './OrderTable'
 import OrderDetsTable from './OrderDetsTable'
 import CustomerTable from './CustomerTable'
 import OrderingPage from './OrderingPage'
+import UpdateProduct from './UpdateProduct';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={ <ProductsTable/>}></Route>
+        <Route path='/updateProduct/:productID' element={ <UpdateProduct/>}></Route>
         <Route path='/OrderingPage' element={ <OrderingPage/> }></Route>
         {/* <Route path='/ProductsTable' element={ <ProductsTable></ProductsTable> }></Route> */}
         <Route path='/InventoryTable' element={ <InventoryTable></InventoryTable> }></Route>

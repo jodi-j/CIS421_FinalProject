@@ -9,13 +9,13 @@ app.use(cors());
 
 app.get('/getBooks', async (req, res) => {
     console.log('Attempting to query the database');
-    pool.query('SELECT * FROM Products WHERE Type = "Book"', async (error, results) => {
+    pool.query('SELECT * FROM Products', async (error, results) => {
         if (error) {
           console.error('Error querying database: ' + error.stack);
           res.status(500).json({ error: 'Internal server error' });
           return;
         }
-        console.log(results.json());
+        console.log('Query results:', results);
         res.json(results);
       });
 });
@@ -25,5 +25,5 @@ app.get('/getBooks', async (req, res) => {
 
 
 
-//const PORT = process.env.PORT || 5000;
-app.listen(5000, () => {console.log("Server started on port 5000")})
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {console.log("Server started on port ", PORT)})
