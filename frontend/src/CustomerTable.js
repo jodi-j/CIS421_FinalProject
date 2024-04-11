@@ -72,11 +72,7 @@ function CustomerTable() {
         //navigate(`/updateProduct/${productID}`)
     };
 
-    const handleDelete = (productID) => {
-        console.log('product id: ', productID);
-    };
 
-    
     return (
         <div>
             <Navbar/>
@@ -94,7 +90,7 @@ function CustomerTable() {
                     opacity: 0.8, 
                     zIndex: -1,
                 }} />}
-        <div style={{ backgroundColor: 'white', width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', height: '50px',width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Customer</Typography>
             <Button variant="contained" color="primary" style={{ marginRight: '5px'}}>Insert</Button>
@@ -110,7 +106,6 @@ function CustomerTable() {
                         <StyledTableCell align="right">Email</StyledTableCell>
                         <StyledTableCell align="right">Shipping Address</StyledTableCell>
                         <StyledTableCell align="right">Update</StyledTableCell>
-                        <StyledTableCell align="right">Delete</StyledTableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -126,9 +121,6 @@ function CustomerTable() {
                     <StyledTableCell align="right">{customer.ShippingAddress}</StyledTableCell>
                     <StyledTableCell align="right">
                         <Button variant="contained" color="primary" onClick={() => handleUpdate(customer.CustID)}>Update</Button>
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                        <Button variant="contained" color="primary" onClick={() => handleDelete(customer.CustID)}>Delete</Button>
                     </StyledTableCell>
                     </StyledTableRow>
                 ))} 

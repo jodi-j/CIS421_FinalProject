@@ -1,10 +1,15 @@
 import {React, useEffect, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Typography, Button, Container, TextField,  Snackbar, Alert, TableCell, TableBody, TableRow, Paper, Table, TableContainer, TableHead  } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const UpdateProduct = () => {
 
     const { productID } = useParams();
+    const navigate = useNavigate();
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState('');
     const [product, setProduct] = useState({
         ID: '',
         Name: '',
@@ -43,13 +48,18 @@ const UpdateProduct = () => {
         fetchProduct();
     },[productID]);
 
-    const handleFieldChange = (e) => {
-        const { name, value } = e.target;
+    const handleFieldChange = (fieldName, value) => {
         setProduct(prevProduct => ({
             ...prevProduct,
-            [name]: value
+            [fieldName]: value
         }));
     };
+    const handleSnackbarClose = () => {
+        setOpenSnackbar(false);
+    }
+    const handleBackButton = () => {
+        navigate('/');
+    }
 
     const handleUpdateProduct = async () => {
         try {
@@ -63,15 +73,34 @@ const UpdateProduct = () => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
+            setMessage('Update successful!');
+            setSeverity('success');
+            setOpenSnackbar(true);
             // Handle success, maybe show a notification
         } catch (error) {
             console.error('Error updating product:', error);
+            setMessage('Error updating product');
+            setSeverity('error');
+            setOpenSnackbar(true);
         }
     };
 
     return(
         // <Container style={{margin: 'auto'}}>
+        <div style={{ marginTop: '25px'}}>
+            <Typography variant='h4' style={{ textAlign: 'center'}} >Update Product</Typography>
+            <Button
+                    variant="contained"
+                    startIcon={<ArrowBackIcon />}
+                    onClick={handleBackButton}
+                    style={{
+                        position: 'absolute',
+                        top: '20px',
+                        left: '20px', 
+                    }}
+                    >
+                    Back
+                </Button>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -90,7 +119,7 @@ const UpdateProduct = () => {
                     </TableHead>
                     <TableBody>
                     <TableRow>
-                            {Object.entries(product).map(([key, value]) => (
+                            {/* {Object.entries(product).map(([key, value]) => (
                                 <TableCell key={key}>
                                     <TextField
                                         name={key}
@@ -102,71 +131,95 @@ const UpdateProduct = () => {
                                         label={key}
                                     />
                                 </TableCell>
-                            ))}
-                            {/* <TableCell>{product.ID}</TableCell>
+                            ))} */}
+                            <TableCell>{product.ID}</TableCell>
                             <TableCell>
                                 <TextField
                                     name="Name"
                                     value={product.Name}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("Name", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="Type"
                                     value={product.Type}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("Type", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="ISBN"
                                     value={product.ISBN}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("ISBN", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="Title"
                                     value={product.Title}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("Title", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="Author"
                                     value={product.Author}
-                                    onChange={(e) => handleFieldChange(product.Author, e.target.value)}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("Author", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="PublishDate"
                                     value={product.PublishDate}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("PublishDate", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="Publisher"
                                     value={product.Publisher}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("Publisher", e.target.value)}
                                 />
                             </TableCell>
                             <TableCell>
                                 <TextField
                                     name="Price"
                                     value={product.Price}
-                                    onChange={handleFieldChange}
+                                    size='small'
+                                    onChange={(e) => handleFieldChange("Price", e.target.value)}
                                 />
-                            </TableCell> */}
+                            </TableCell>
                             <TableCell>
                                 <Button variant="outlined" onClick={handleUpdateProduct}>Update</Button>
                             </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
+                
             </TableContainer>
+            <Snackbar
+                        open={openSnackbar}
+                        autoHideDuration={6000}
+                        onClose={handleSnackbarClose}
+                        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                    >
+                        <Alert
+                        onClose={handleSnackbarClose}
+                        severity={severity}
+                        sx={{ width: "100%", background: "black", color: "white"}}
+                        >
+                        {message}
+                        </Alert>
+                    </Snackbar>
+            </div>
         // </Container>
     )
 }

@@ -74,9 +74,6 @@ function InventoryTable() {
         //navigate(`/updateProduct/${productID}`)
     };
 
-    const handleDelete = (productID) => {
-        console.log('product id: ', productID);
-    };
 
     return (
         <div>
@@ -96,10 +93,10 @@ function InventoryTable() {
                     zIndex: -1,
                 }} />}
         {/* <Typography variant="h4" component="div" style={{backgroundColor: 'white', width: '75%', textAlign: 'center'}}>Products</Typography> */}
-        <div style={{ backgroundColor: 'white', width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', height: '50px',width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Inventory</Typography>
-            <Button variant="contained" color="primary" style={{ marginRight: '5px'}}>Insert</Button>
+            <div></div>
         </div>
         <TableContainer component={Paper} style={{width: '85%', margin: 'auto'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -108,7 +105,6 @@ function InventoryTable() {
                         <StyledTableCell>Product ID</StyledTableCell>
                         <StyledTableCell align="right">Quantity</StyledTableCell>
                         <StyledTableCell align="right">Update</StyledTableCell>
-                        <StyledTableCell align="right">Delete</StyledTableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -120,9 +116,6 @@ function InventoryTable() {
                     <StyledTableCell align="right">{inven.Quantity}</StyledTableCell>
                     <StyledTableCell align="right">
                         <Button variant="contained" color="primary" onClick={() => handleUpdate(inven.ID)}>Update</Button>
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                        <Button variant="contained" color="primary" onClick={() => handleDelete(inven.ID)}>Delete</Button>
                     </StyledTableCell>
                     </StyledTableRow>
                 ))}

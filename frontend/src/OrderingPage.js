@@ -1,4 +1,4 @@
-import { TextField, Button, Typography, Container, CssBaseline } from '@mui/material';
+import { TextField, Button, Typography, Container, CssBaseline ,Snackbar, Alert } from '@mui/material';
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 
@@ -6,6 +6,11 @@ const OrderingPage = () => {
 
     const [items, setItems] = useState([{ itemID: '', quantity: 0}]);
     const [custID, setCustID] = useState('');
+    const [address, setAddress] = useState('');
+
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState('');
 
     const handleAddItem = () => {
         setItems([...items, { code: '', quantity: 0}]);
@@ -17,9 +22,107 @@ const OrderingPage = () => {
         setItems(updatedItems);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+      try {
+          const currentDate = new Date();
+          const formattedDate = formatDate(currentDate);
+          const totalPrice = await calculateTotalPrice();
+          const orderData = {
+              CustID: custID,
+              Date: formattedDate,
+              TotalPrice: totalPrice, 
+              Address: address, 
+          };
 
+          console.log(orderData);
+
+          const response = await fetch('http://localhost:5000/addOrder', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(orderData),
+          });
+
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+
+          const order = await response.json();
+
+          // Insert order details
+          await Promise.all(
+              items.map(async (item) => {
+                  const orderDetailsData = {
+                      OrderID: order.orderId,
+                      ProductID: item.code,
+                      Quantity: item.quantity,
+                  };
+
+                  const detailsResponse = await fetch('http://localhost:5000/addOrderDetails', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(orderDetailsData),
+                  });
+
+                  if (!detailsResponse.ok) {
+                      throw new Error('Error adding order details');
+                  }
+              })
+          );
+
+          setMessage('Order submitted successfully!');
+          setSeverity('success');
+          setOpenSnackbar(true);
+          // If everything is successful
+          console.log('Order submitted successfully');
+      } catch (error) {
+          setMessage('Error submitting order.');
+          setSeverity('error');
+          setOpenSnackbar(true);
+          console.error('Error submitting order:', error);
+      }
+  };
+  const calculateTotalPrice = async () => {
+    let totalPrice = 0;
+
+    for (const item of items) {
+        try {
+            // Make a GET request to fetch the price of the product by ProductID
+            const response = await fetch(`http://localhost:5000/getProductPrice/${item.code}`);
+            
+            if (!response.ok) {
+                throw new Error('Error fetching product price');
+            }
+
+            const { price } = await response.json();
+
+            totalPrice += price * item.quantity;
+        } catch (error) {
+            setMessage('Error fetching product prices.');
+            setSeverity('error');
+            setOpenSnackbar(true);
+            console.error('Error fetching product price:', error);
+            // Handle errors if necessary
+        }
     }
+
+    return totalPrice;
+};
+  const formatDate = (date) => {
+    // Get year, month, and day from the date object
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    // Return the formatted date string
+    return `${year}-${month}-${day}`;
+  };
+  const handleSnackbarClose = () => {
+    setOpenSnackbar(false);
+  }
 
     return(
       <div>
@@ -70,7 +173,7 @@ const OrderingPage = () => {
           >
             Add
           </Button>
-          <form>
+          <form style={{ display: 'inline-block' }}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -83,6 +186,17 @@ const OrderingPage = () => {
               value={custID}
               onChange={(e) => setCustID(e.target.value)}
             />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              id="address"
+              label="Address"
+              name="address"
+              style={{ backgroundColor: 'white'}}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+          />
             <Button
               variant="contained"
               color="primary"
@@ -95,6 +209,20 @@ const OrderingPage = () => {
           </form>
         </div>
       </Container>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+    >
+        <Alert
+        onClose={handleSnackbarClose}
+        severity={severity}
+        sx={{ width: "100%", background: "black", color: "white"}}
+        >
+        {message}
+        </Alert>
+    </Snackbar>
       </div>
     )
 }

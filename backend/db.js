@@ -1,7 +1,6 @@
 
 const mysql = require('mysql');
 
-console.log('Creating database pool')
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
@@ -26,6 +25,5 @@ pool.on('error', (err) => {
     console.error("Database connection error:", err.message);
 });
 
-console.log('Made it down here');
 
 module.exports = pool;

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
-    tableCellClasses, Container, Typography, Button } from '@mui/material';
+    tableCellClasses, Container, Typography, Button, Snackbar, Alert } from '@mui/material';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "./Navbar";
@@ -41,6 +41,10 @@ function ProductsTable() {
     const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
     const [books, setBooks] = useState([]);
 
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState('');
+
     useEffect(() => {
         const fetchBooks = async () => {
             try {
@@ -73,9 +77,31 @@ function ProductsTable() {
         navigate(`/updateProduct/${productID}`)
     };
 
-    const handleDelete = (productID) => {
-        console.log('product id: ', productID);
+    const handleDelete = async (productID) => {
+        try {
+            const response = await fetch(`http://localhost:5000/deleteProduct/${productID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            setMessage('Product deleted successfully!');
+            setSeverity('success');
+            setOpenSnackbar(true);
+            // Handle success, maybe show a notification
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            setMessage('Error deleting product');
+            setSeverity('error');
+            setOpenSnackbar(true);
+        }
     };
+    const handleSnackbarClose = () => {
+        setOpenSnackbar(false);
+    }
 
     return (
         <div>
@@ -95,10 +121,10 @@ function ProductsTable() {
                     zIndex: -1,
                 }} />}
         {/* <Typography variant="h4" component="div" style={{backgroundColor: 'white', width: '75%', textAlign: 'center'}}>Products</Typography> */}
-        <div style={{ backgroundColor: 'white', width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', height: '50px',width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Products</Typography>
-            <Button variant="contained" color="primary" style={{ marginRight: '5px'}}>Insert</Button>
+            <Button variant="contained" color="primary" style={{ marginRight: '5px'}} onClick={() => navigate('/addProduct')}>Insert</Button>
         </div>
         <TableContainer component={Paper} style={{width: '85%', margin: 'auto'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -143,6 +169,20 @@ function ProductsTable() {
             </Table>
         </TableContainer>
         </div>
+        <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}
+            onClose={handleSnackbarClose}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+            <Alert
+            onClose={handleSnackbarClose}
+            severity={severity}
+            sx={{ width: "100%", background: "black", color: "white"}}
+            >
+            {message}
+            </Alert>
+        </Snackbar>
         </div>
     )
 }
