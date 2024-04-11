@@ -43,7 +43,7 @@ app.get('/getProduct', async (req, res) => {
     });
 });
 
-// DELETE Statement, delete one product
+// DELETE Statement, delete product and all references to it, nested for Inventory and OrderDetails tables
 app.delete('/deleteProduct/:productID', (req, res) => {
   const { productID } = req.params;
   try{
@@ -199,6 +199,7 @@ app.post('/addProduct', async (req, res) => {
   }
 });
 
+// SELECT Statement, get price of one product
 app.get('/getProductPrice/:productID', (req, res) => {
   const { productID } = req.params;
 
@@ -217,6 +218,7 @@ app.get('/getProductPrice/:productID', (req, res) => {
   });
 });
 
+// INSERT Statement, insert new order
 app.post('/addOrder', async (req, res) => {
   try {
       const { CustID, Date, TotalPrice, Address } = req.body;
@@ -244,6 +246,7 @@ app.post('/addOrder', async (req, res) => {
   }
 });
 
+// INSERT Statement, insert order details
 app.post('/addOrderDetails', async (req, res) => {
   try {
       const { OrderID, ProductID, Quantity } = req.body;
@@ -270,7 +273,7 @@ app.post('/addOrderDetails', async (req, res) => {
   }
 });
 
-
+// SELECT Statement, get all inventory rows
 app.get('/getInventory', async (req, res) => {
   pool.query('SELECT * FROM Inventory', async (error, results) => {
     if (error){
@@ -283,6 +286,7 @@ app.get('/getInventory', async (req, res) => {
   })
 });
 
+// SELECT Statement, get all orders
 app.get('/getOrders', async (req, res) => {
   pool.query('SELECT * FROM Orders', async (error, results) => {
     if (error){
@@ -295,8 +299,7 @@ app.get('/getOrders', async (req, res) => {
   })
 });
 
-// Order Details query
-
+// SELECT Statement, get all customers
 app.get('/getCustomers', async (req, res) => {
   pool.query('SELECT * FROM Customers', async (error, results) => {
     if (error){

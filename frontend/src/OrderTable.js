@@ -65,8 +65,8 @@ function OrderTable() {
         fetchOrders();
     },[]);
 
-    const handleDetails = (productID) => {
-        console.log('product id: ', productID);
+    const handleDetails = (orderID) => {
+        console.log('product id: ', orderID);
         //navigate(`/updateProduct/${productID}`)
     };
 
