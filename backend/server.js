@@ -344,6 +344,78 @@ app.get('/getCustomers', async (req, res) => {
   })
 });
 
+// INSERT Statement, insert new customer
+app.post('/addCustomer', async (req, res) => {
+    try {
+        const { Fname, Lname, Phone, Email, ShippingAddress } = req.body;
+
+        // Validate incoming data
+        // Validate incoming data
+        if (!Fname || !Lname || !Phone || !Email || !ShippingAddress) {
+            return res.status(400).json({ error: 'First name, last name, phone number, email, and shipping address are required fields' });
+        }
+
+        // Start a transaction
+        pool.getConnection((err, connection) => {
+            if (err) {
+                console.error('Error starting transaction:', err);
+              return res.status(500).json({ error: 'Internal server error' });
+            }
+
+            connection.beginTransaction(async (transactionErr) => {
+                if (transactionErr) {
+                    console.error('Error beginning transaction:', transactionErr);
+                    return res.status(500).json({ error: 'Internal server error' });
+                }
+            
+                try {
+                    // Execute the SQL INSERT statement to add the customer to the Customer table
+                    const customerInsertQuery = 'INSERT INTO Customers (Fname, Lname, Phone, Email, ShippingAddress) VALUES (?, ?, ?, ?, ?)'
+                    const customerInsertParams = [Fname, Lname, Phone, Email, ShippingAddress]
+
+                    connection.query(customerInsertQuery, customerInsertParams, async (customerInsertError, customerInsertResults) => {
+                        if (customerInsertError) {
+                            console.error('Error adding customer:', customerInsertError);
+                                connection.rollback(() => {
+                                    res.status(500).json({ error: 'Internal server error' });
+                                });
+                            return;
+                        }
+
+                        // Commit the transaction
+                        connection.commit((commitError) => {
+                            if (commitError) {
+                                console.error('Error committing transaction:', commitError);
+                                connection.rollback(() => {
+                                    res.status(500).json({ error: 'Internal server error' });
+                                });
+                                return;
+                            }
+
+                            console.log('Transaction committed successfully');
+                            res.status(201).json({ message: 'Customer added successfully' });
+                        });
+                    });
+
+                } catch (error) {
+                    console.error('Error adding customer:', error);
+                    connection.rollback(() => {
+                        res.status(500).json({ error: 'Internal server error' });
+                    });
+                } finally {
+                    // Release the connection
+                    connection.release();
+                }
+            });
+        });
+
+        
+    } catch (error) {
+        console.error('Error adding customer:', error);
+        // Send an error response
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 
 

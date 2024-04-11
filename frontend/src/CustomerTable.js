@@ -93,7 +93,7 @@ function CustomerTable() {
         <div style={{ backgroundColor: 'white', height: '50px',width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Customer</Typography>
-            <Button variant="contained" color="primary" style={{ marginRight: '5px'}}>Insert</Button>
+            <Button variant="contained" color="primary" style={{ marginRight: '5px'}} onClick={() => navigate('/addCustomer')}>Insert</Button>
         </div>
         <TableContainer component={Paper} style={{width: '85%', margin: 'auto'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">

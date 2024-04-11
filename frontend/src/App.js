@@ -10,6 +10,7 @@ import CustomerTable from './CustomerTable'
 import OrderingPage from './OrderingPage'
 import UpdateProduct from './UpdateProduct';
 import InsertProduct from './InsertProduct';
+import InsertCustomer from './InsertCustomer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/OrderTable' element={ <OrderTable></OrderTable> }></Route>
         <Route path='/OrderDetails/:orderID' element={ <OrderDetsTable></OrderDetsTable> }></Route>
         <Route path='/CustomerTable' element={ <CustomerTable></CustomerTable> }></Route>
+        <Route path='/addCustomer' element={ <InsertCustomer/>}></Route>
       </Routes>
     </Router>
   );
