@@ -67,9 +67,9 @@ function CustomerTable() {
         fetchCustomers();
     },[]);
 
-    const handleUpdate = (productID) => {
-        console.log('product id: ', productID);
-        //navigate(`/updateProduct/${productID}`)
+    const handleUpdate = (custID) => {
+        console.log('cust ID: ', custID);
+        navigate(`/updateCustomer/${custID}`)
     };
 
 

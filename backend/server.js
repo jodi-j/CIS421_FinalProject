@@ -417,8 +417,35 @@ app.post('/addCustomer', async (req, res) => {
     }
 });
 
+// UPDATE Statement, update a customer
+app.put('/updateCustomer', async (req, res) => {
+    try {
+        const updatedCustomer = req.body;
 
+        // Extract individual fields from the customer object
+        const { Fname, Lname, Phone, Email, ShippingAddress, CustID } = updatedCustomer;
 
+        // Execute the SQL UPDATE statement
+        pool.query(
+            'UPDATE Customers SET Fname = ?, Lname = ?, Phone = ?, Email = ?, ShippingAddress = ? WHERE CustID = ?',
+            [Fname, Lname, Phone, Email, ShippingAddress, CustID],
+            (error, results) => {
+                if (error) {
+                    console.error('Error updating customer:', error);
+                    res.status(500).json({ error: 'Internal server error' });
+                } else {
+                    // Product updated successfully
+                    console.log('Customer updated successfully');
+                    res.status(200).json({ message: 'Customer updated successfully' });
+                }
+            }
+        );
+    } catch (error) {
+        console.error('Error updating product:', error);
+        // Send an error response
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 
 

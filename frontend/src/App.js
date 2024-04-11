@@ -11,6 +11,7 @@ import OrderingPage from './OrderingPage'
 import UpdateProduct from './UpdateProduct';
 import InsertProduct from './InsertProduct';
 import InsertCustomer from './InsertCustomer';
+import UpdateCustomer from './UpdateCustomer'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/OrderDetails/:orderID' element={ <OrderDetsTable></OrderDetsTable> }></Route>
         <Route path='/CustomerTable' element={ <CustomerTable></CustomerTable> }></Route>
         <Route path='/addCustomer' element={ <InsertCustomer/>}></Route>
+        <Route path='/updateCustomer/:custID' element={ <UpdateCustomer/>}></Route>
       </Routes>
     </Router>
   );
