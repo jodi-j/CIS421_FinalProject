@@ -44,7 +44,7 @@ function ProductsTable() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await fetch('http://localhost:5000/getBooks', {
+                const response = await fetch('http://localhost:5000/getProducts', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
