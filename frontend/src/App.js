@@ -19,10 +19,9 @@ function App() {
         <Route path='/addProduct' element={ <InsertProduct/>}></Route>
         <Route path='/updateProduct/:productID' element={ <UpdateProduct/>}></Route>
         <Route path='/OrderingPage' element={ <OrderingPage/> }></Route>
-        {/* <Route path='/ProductsTable' element={ <ProductsTable></ProductsTable> }></Route> */}
         <Route path='/InventoryTable' element={ <InventoryTable></InventoryTable> }></Route>
         <Route path='/OrderTable' element={ <OrderTable></OrderTable> }></Route>
-        <Route path='/OrderDetsTable' element={ <OrderDetsTable></OrderDetsTable> }></Route>
+        <Route path='/OrderDetails/:orderID' element={ <OrderDetsTable></OrderDetsTable> }></Route>
         <Route path='/CustomerTable' element={ <CustomerTable></CustomerTable> }></Route>
       </Routes>
     </Router>

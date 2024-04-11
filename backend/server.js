@@ -273,6 +273,38 @@ app.post('/addOrderDetails', async (req, res) => {
   }
 });
 
+// SELECT Statement, get all order details for an order
+app.get('/orderDetails/:orderId', async (req, res) => {
+  const orderId = req.params.orderId;
+
+  try {
+      const orderDetailsQuery = 'SELECT * FROM OrderDetails WHERE OrderID = ?';
+      pool.query(orderDetailsQuery, [orderId], async (error, results) => {
+        if (error) {
+          console.error('Error querying database: ' + error.stack);
+          res.status(500).json({ error: 'Internal server error' });
+          return;
+        }
+  
+        if (results.length === 0){
+          return res.status(404).json({ error: 'Product not found'});
+        }
+        console.log('Query results:', results);
+        const orderDetails = results.map(detail => ({
+          OrderID: detail.OrderID,
+          ProductID: detail.ProductID,
+          Quantity: detail.Quantity
+        }));
+        res.status(200).json({ orderDetails });
+      });
+
+
+  } catch (error) {
+      console.error('Error fetching order details:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // SELECT Statement, get all inventory rows
 app.get('/getInventory', async (req, res) => {
   pool.query('SELECT * FROM Inventory', async (error, results) => {

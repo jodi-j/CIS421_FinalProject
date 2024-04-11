@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, 
     TableHead, TableRow, Paper, tableCellClasses, Typography, Button } from '@mui/material';
 import './HomePage.css';
+import { useNavigate } from 'react-router-dom';
 import Navbar from "./Navbar";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -37,6 +38,7 @@ function OrderTable() {
 
     const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
     const [orders, setOrders] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -66,8 +68,8 @@ function OrderTable() {
     },[]);
 
     const handleDetails = (orderID) => {
-        console.log('product id: ', orderID);
-        //navigate(`/updateProduct/${productID}`)
+        console.log('order id: ', orderID);
+        navigate(`/OrderDetails/${orderID}`)
     };
 
 
