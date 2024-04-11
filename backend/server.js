@@ -199,6 +199,36 @@ app.post('/addProduct', async (req, res) => {
   }
 });
 
+// UPDATE Statement, update quantity in inventory
+app.put('/updateInventory', async (req, res) => {
+    try {
+        const updatedInventory = req.body;
+
+        // Extract individual fields from the inventory object
+        const { Quantity, ProductID } = updatedInventory;
+
+        // Execute the SQL UPDATE statement
+        pool.query(
+            'UPDATE Inventory SET Quantity = ? WHERE ProductID = ?',
+            [Quantity, ProductID],
+            (error, results) => {
+                if (error) {
+                    console.error('Error updating inventory:', error);
+                    res.status(500).json({ error: 'Internal server error' });
+                } else {
+                    // Product updated successfully
+                    console.log('Inventory updated successfully');
+                    res.status(200).json({ message: 'Inventory updated successfully' });
+                }
+            }
+        );
+    } catch (error) {
+        console.error('Error updating inventory:', error);
+        // Send an error response
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
 // SELECT Statement, get price of one product
 app.get('/getProductPrice/:productID', (req, res) => {
   const { productID } = req.params;

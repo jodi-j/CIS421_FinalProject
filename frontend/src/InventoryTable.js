@@ -62,7 +62,7 @@ function InventoryTable() {
                 setInventory(data);
 
             }catch(error){
-                console.error('Error fetching books:', error);
+                console.error('Error fetching inventory:', error);
             }
         }
 
@@ -71,7 +71,7 @@ function InventoryTable() {
 
     const handleUpdate = (productID) => {
         console.log('product id: ', productID);
-        //navigate(`/updateProduct/${productID}`)
+        navigate(`/updateInventory/${productID}`)
     };
 
 
@@ -115,7 +115,7 @@ function InventoryTable() {
                     </StyledTableCell>
                     <StyledTableCell align="right">{inven.Quantity}</StyledTableCell>
                     <StyledTableCell align="right">
-                        <Button variant="contained" color="primary" onClick={() => handleUpdate(inven.ID)}>Update</Button>
+                        <Button variant="contained" color="primary" onClick={() => handleUpdate(inven.ProductID)}>Update</Button>
                     </StyledTableCell>
                     </StyledTableRow>
                 ))}

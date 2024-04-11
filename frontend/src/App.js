@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './HomePage';
 import ProductsTable from './ProductsTable';
-import InventoryTable from './InventoryTable'
-import OrderTable from './OrderTable'
-import OrderDetsTable from './OrderDetsTable'
-import CustomerTable from './CustomerTable'
-import OrderingPage from './OrderingPage'
+import InventoryTable from './InventoryTable';
+import OrderTable from './OrderTable';
+import OrderDetsTable from './OrderDetsTable';
+import CustomerTable from './CustomerTable';
+import OrderingPage from './OrderingPage';
 import UpdateProduct from './UpdateProduct';
 import InsertProduct from './InsertProduct';
 import InsertCustomer from './InsertCustomer';
-import UpdateCustomer from './UpdateCustomer'
+import UpdateCustomer from './UpdateCustomer';
+import UpdateInventory from './UpdateInventory';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/CustomerTable' element={ <CustomerTable></CustomerTable> }></Route>
         <Route path='/addCustomer' element={ <InsertCustomer/>}></Route>
         <Route path='/updateCustomer/:custID' element={ <UpdateCustomer/>}></Route>
+        <Route path='/updateInventory/:productID' element={ <UpdateInventory/>}></Route>
       </Routes>
     </Router>
   );
