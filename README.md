@@ -2,9 +2,9 @@
 Welcome to our Bookstore Database project for CIS421! Below are the required packages for installment, along with instructions on how to run the website.
 
 Please ensure that the following packages are present in your environment, using the following commands:
-- npm install mysql
-- npm install express
-- npm install cors
+- `npm install mysql`
+- `npm install express`
+- `npm install cors`
 
 This website hosts the database locally through MySQL using Xampp. Requirements for creating an instance of the database can be found in the 'db.js' file.
 
