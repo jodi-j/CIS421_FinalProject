@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -327,8 +326,6 @@ app.get('/orderDetails/:orderId', async (req, res) => {
         }));
         res.status(200).json({ orderDetails });
       });
-
-
   } catch (error) {
       console.error('Error fetching order details:', error);
       res.status(500).json({ error: 'Internal server error' });
@@ -438,8 +435,6 @@ app.post('/addCustomer', async (req, res) => {
                 }
             });
         });
-
-        
     } catch (error) {
         console.error('Error adding customer:', error);
         // Send an error response
@@ -476,8 +471,6 @@ app.put('/updateCustomer', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {console.log("Server started on port ", PORT)})
