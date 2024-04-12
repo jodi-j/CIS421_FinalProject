@@ -25,15 +25,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-// function createData(OrderID, CustID, Date, Address, TotalPrice) {
-//     return {OrderID, CustID, Date, Address, TotalPrice}
-// }
-
-// const rows = [
-//     createData("1", 1234, "04-05-2024", "1234 Street Street", 30.99),
-//     createData("2", 5678, "04-05-2024", "9876 Cool People Avenue", 10.99)
-// ]
-
 function OrderTable() {
 
     const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
@@ -52,11 +43,7 @@ function OrderTable() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                //console.log("eh")
-                //This is causing issues
-                //console.log(response.json());
                 const data = await response.json();
-                //console.log("Data:", data);
                 setOrders(data);
 
             }catch(error){
@@ -91,7 +78,6 @@ function OrderTable() {
                     opacity: 0.8, 
                     zIndex: -1,
                 }} />}
-        {/* <Typography variant="h4" component="div" style={{backgroundColor: 'white', width: '75%', textAlign: 'center'}}>Products</Typography> */}
         <div style={{ backgroundColor: 'white', height: '50px', width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Orders</Typography>

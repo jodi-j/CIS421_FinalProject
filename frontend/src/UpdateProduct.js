@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Typography, Button, Container, TextField,  Snackbar, Alert, TableCell, TableBody, TableRow, Paper, Table, TableContainer, TableHead  } from '@mui/material';
+import { Typography, Button, TextField,  Snackbar, Alert, TableCell, TableBody, TableRow, Paper, Table, TableContainer, TableHead  } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const UpdateProduct = () => {
@@ -86,7 +86,6 @@ const UpdateProduct = () => {
     };
 
     return(
-        // <Container style={{margin: 'auto'}}>
         <div style={{ marginTop: '25px'}}>
             <Typography variant='h4' style={{ textAlign: 'center'}} >Update Product</Typography>
             <Button
@@ -119,19 +118,6 @@ const UpdateProduct = () => {
                     </TableHead>
                     <TableBody>
                     <TableRow>
-                            {/* {Object.entries(product).map(([key, value]) => (
-                                <TableCell key={key}>
-                                    <TextField
-                                        name={key}
-                                        value={value}
-                                        onChange={handleFieldChange}
-                                        fullWidth
-                                        size="small"
-                                        variant="outlined"
-                                        label={key}
-                                    />
-                                </TableCell>
-                            ))} */}
                             <TableCell>{product.ID}</TableCell>
                             <TableCell>
                                 <TextField
@@ -220,7 +206,6 @@ const UpdateProduct = () => {
                         </Alert>
                     </Snackbar>
             </div>
-        // </Container>
     )
 }
 

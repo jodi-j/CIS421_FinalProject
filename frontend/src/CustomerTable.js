@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
     tableCellClasses, Typography, Button } from '@mui/material';
-import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "./Navbar";
 
@@ -25,20 +24,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-//function createData(CustID, FName, LName, PhoneNum, Email, ShippingAddress) {
-//    return {CustID, FName, LName, PhoneNum, Email, ShippingAddress}
-//}
-
-//const rows = [
-//    createData(1234, "Harry", "Potter", "123456789", "imawizardharry@gmail.com", "34 Privet Drive"),
-//    createData(5678, "Ron", "Weasley", "987654321", "myratispeterpettigrew@hotmail.com", "Hogwarts")
-//]
-
 function CustomerTable() {
     const navigate = useNavigate();
     const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
     const [customers, setCustomers] = useState([]);
-
 
     useEffect(() => {
         const fetchCustomers = async () => {
@@ -52,11 +41,7 @@ function CustomerTable() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                //console.log("eh")
-                //This is causing issues
-                //console.log(response.json());
                 const data = await response.json();
-                //console.log("Data:", data);
                 setCustomers(data);
 
             }catch(error){
@@ -71,7 +56,6 @@ function CustomerTable() {
         console.log('cust ID: ', custID);
         navigate(`/updateCustomer/${custID}`)
     };
-
 
     return (
         <div>

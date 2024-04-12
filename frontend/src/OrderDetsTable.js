@@ -26,15 +26,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-// function createData(OrderID, ItemID, Quantity) {
-//     return {OrderID, ItemID, Quantity}
-// }
-
-// const rows = [
-//     createData("ORDER-1", "BOOK-1", 1),
-//     createData("ORDER-2", "MERCH-2", 2)
-// ]
-
 function OrderDetsTable() {
     const { orderID } = useParams();
     const [orderDetails, setOrderDetails] = useState([]);
@@ -65,7 +56,6 @@ function OrderDetsTable() {
                     'Content-Type': 'application/json',
                 },
             });
-            //const response = await fetch(`http://localhost:5000/productInfo/${productID}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

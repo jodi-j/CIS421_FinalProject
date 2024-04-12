@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
@@ -26,16 +25,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-// function createData(ItemID, Name, Type, IBSN, Title, Author, PublishDate, Publisher, Price) {
-//     return { ItemID, Name, Type, IBSN, Title, Author, PublishDate, Publisher, Price };
-// }
-
-// const rows = [
-//     createData(1, "Book 1 Name", "Book", "IBSN1", "Book 1 Title", "Author 1", "Date 1", "Publisher 1", "10.99"),
-//     createData(2, "Book 2 Name", "Book", "IBSN2", "Book 2 Title", "Author 2", "Date 2", "Publisher 2", "20.99"),
-//     createData(3, "Canvas Tote Bag", "Merchandise", "null", "null", "null", "null", "null", "9.99")
-// ];
-
 function ProductsTable() {
     const navigate = useNavigate();
     const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
@@ -57,11 +46,7 @@ function ProductsTable() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                //console.log("eh")
-                //This is causing issues
-                //console.log(response.json());
                 const data = await response.json();
-                //console.log("Data:", data);
                 setBooks(data);
 
             }catch(error){
@@ -120,7 +105,6 @@ function ProductsTable() {
                     opacity: 0.8, 
                     zIndex: -1,
                 }} />}
-        {/* <Typography variant="h4" component="div" style={{backgroundColor: 'white', width: '75%', textAlign: 'center'}}>Products</Typography> */}
         <div style={{ backgroundColor: 'white', height: '50px',width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Products</Typography>

@@ -25,17 +25,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-// function createData(ItemID, Quantity) {
-//     return {ItemID, Quantity}
-// }
-
-// const rows = [
-//     createData("BOOK-1", 420),
-//     createData("BOOK-2", 100),
-//     createData("MERCH-1", 50),
-//     createData("MERCH-2", 1000000)
-// ]
-
 function InventoryTable() {
     const navigate = useNavigate();
     const image = process.env.PUBLIC_URL + '/images/bookstore_background.jpg';
@@ -54,11 +43,7 @@ function InventoryTable() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                //console.log("eh")
-                //This is causing issues
-                //console.log(response.json());
                 const data = await response.json();
-                //console.log("Data:", data);
                 setInventory(data);
 
             }catch(error){
@@ -92,7 +77,6 @@ function InventoryTable() {
                     opacity: 0.8, 
                     zIndex: -1,
                 }} />}
-        {/* <Typography variant="h4" component="div" style={{backgroundColor: 'white', width: '75%', textAlign: 'center'}}>Products</Typography> */}
         <div style={{ backgroundColor: 'white', height: '50px',width: '60%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Inventory</Typography>

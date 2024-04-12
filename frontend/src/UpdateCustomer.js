@@ -174,7 +174,6 @@ const UpdateCustomer = () => {
                         </Alert>
                     </Snackbar>
             </div>
-        // </Container>
     )
 }
 

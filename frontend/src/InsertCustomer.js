@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, TextField, Button, Container, Snackbar, Alert, Select ,MenuItem, InputLabel } from '@mui/material';
+import { Typography, TextField, Button, Container, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -63,10 +63,6 @@ const InsertCustomer = () => {
             } else {
                 throw new Error('Error adding customer');
             }
-            // setMessage('Customer added successfully!');
-            // setSeverity('success');
-            // setOpenSnackbar(true);
-            // Clear the form fields after successful submission
             setCustomer({
                 Fname: '',
                 Lname: '',

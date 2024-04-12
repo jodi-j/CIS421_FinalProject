@@ -66,10 +66,6 @@ const InsertProduct = () => {
             } else {
                 throw new Error('Error adding product');
             }
-            // setMessage('Product added successfully!');
-            // setSeverity('success');
-            // setOpenSnackbar(true);
-            // Clear the form fields after successful submission
             setProduct({
                 Name: '',
                 Type: '',
