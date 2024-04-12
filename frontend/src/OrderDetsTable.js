@@ -1,10 +1,11 @@
 import {React, useEffect, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Table, TableBody, TableCell, TableContainer, 
-    TableHead, TableRow, Paper, tableCellClasses } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, Button,
+    TableHead, TableRow, Paper, tableCellClasses, Typography } from '@mui/material';
 import './HomePage.css';
 import Navbar from "./Navbar";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -78,6 +79,11 @@ function OrderDetsTable() {
         }
     };
 
+    const navigate = useNavigate();
+    const handleBackButton = () => {
+        navigate('/OrderTable');
+    }
+
     useEffect(() => {
         const getProductInfoForOrderDetails = async () => {
             try {
@@ -106,6 +112,8 @@ function OrderDetsTable() {
 
     return (
         <div>
+            <Navbar/>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             { <div style={{
                     position: 'absolute',
                     top: 0,
@@ -119,32 +127,28 @@ function OrderDetsTable() {
                     opacity: 0.8, 
                     zIndex: -1,
                 }} />}
-        <Navbar/>
+        
 
-        <TableContainer component={Paper} style={{width: '75%', margin: 'auto', marginTop: '10px'}}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>OrderID</StyledTableCell>
-                        <StyledTableCell align="right">ProductID</StyledTableCell>
-                        <StyledTableCell align="right">Quantity</StyledTableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {orderDetails.map((detail) => (
-                    <StyledTableRow key={detail.ItemID}>
-                    <StyledTableCell component="th" scope="row">
-                        {detail.OrderID}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{detail.ProductID}</StyledTableCell>
-                    <StyledTableCell align="right">{detail.Quantity}</StyledTableCell>
-                    </StyledTableRow>
-                ))}
-            </TableBody>
-            </Table>
-        </TableContainer>
+        {/* Order ID Label */}
+        <div style={{ backgroundColor: 'white', height: '50px',width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div></div>
+            <Typography variant="h4">Order Details — Order ID #{orderID}</Typography>
+            <div></div>
+        </div>
+        <Button
+                    variant="contained"
+                    startIcon={<ArrowBackIcon />}
+                    onClick={handleBackButton}
+                    style={{
+                        position: 'absolute',
+                        top: '70px',
+                        left: '20px', 
+                    }}
+                    >
+                    Back
+                </Button>
         {/* Product information table */}
-        <TableContainer component={Paper} style={{ width: '75%', margin: 'auto', marginTop: '20px' }}>
+        <TableContainer component={Paper} style={{ width: '80%', margin: 'auto' }}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
@@ -158,7 +162,7 @@ function OrderDetsTable() {
                         {products.map((product, index) => (
                             <StyledTableRow key={index}>
                                 <StyledTableCell component="th" scope="row">
-                                    {product.ProductID}
+                                    {product.ID}
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{product.Name}</StyledTableCell>
                                 <StyledTableCell align="right">{product.Price}</StyledTableCell>
@@ -168,6 +172,7 @@ function OrderDetsTable() {
                     </TableBody>
                 </Table>
             </TableContainer>
+    </div>
     </div>
     )
 }

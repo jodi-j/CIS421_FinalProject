@@ -82,7 +82,6 @@ const UpdateCustomer = () => {
     };
 
     return(
-        // <Container style={{margin: 'auto'}}>
         <div style={{ marginTop: '25px'}}>
             <Typography variant='h4' style={{ textAlign: 'center'}} >Update Customer</Typography>
             <Button
@@ -111,19 +110,6 @@ const UpdateCustomer = () => {
                     </TableHead>
                     <TableBody>
                     <TableRow>
-                            {/* {Object.entries(product).map(([key, value]) => (
-                                <TableCell key={key}>
-                                    <TextField
-                                        name={key}
-                                        value={value}
-                                        onChange={handleFieldChange}
-                                        fullWidth
-                                        size="small"
-                                        variant="outlined"
-                                        label={key}
-                                    />
-                                </TableCell>
-                            ))} */}
                             <TableCell>{customer.CustID}</TableCell>
                             <TableCell>
                                 <TextField

@@ -93,17 +93,17 @@ function InventoryTable() {
                     zIndex: -1,
                 }} />}
         {/* <Typography variant="h4" component="div" style={{backgroundColor: 'white', width: '75%', textAlign: 'center'}}>Products</Typography> */}
-        <div style={{ backgroundColor: 'white', height: '50px',width: '85%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', height: '50px',width: '60%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div></div>
             <Typography variant="h4">Inventory</Typography>
             <div></div>
         </div>
-        <TableContainer component={Paper} style={{width: '85%', margin: 'auto'}}>
+        <TableContainer component={Paper} style={{width: '60%', margin: 'auto'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Product ID</StyledTableCell>
-                        <StyledTableCell align="right">Quantity</StyledTableCell>
+                        <StyledTableCell align="center">Quantity</StyledTableCell>
                         <StyledTableCell align="right">Update</StyledTableCell>
                 </TableRow>
             </TableHead>
@@ -113,7 +113,7 @@ function InventoryTable() {
                     <StyledTableCell component="th" scope="row">
                         {inven.ProductID}
                     </StyledTableCell>
-                    <StyledTableCell align="right">{inven.Quantity}</StyledTableCell>
+                    <StyledTableCell align="center">{inven.Quantity}</StyledTableCell>
                     <StyledTableCell align="right">
                         <Button variant="contained" color="primary" onClick={() => handleUpdate(inven.ProductID)}>Update</Button>
                     </StyledTableCell>
