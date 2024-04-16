@@ -138,7 +138,7 @@ function ProductsTable() {
                     <StyledTableCell align="right">{book.ISBN || 'Null'}</StyledTableCell>
                     <StyledTableCell align="right">{book.Title || 'Null'}</StyledTableCell>
                     <StyledTableCell align="right">{book.Author || 'Null'}</StyledTableCell>
-                    <StyledTableCell align="right">{book.PublishDate ? new Date(book.PublishDate).toLocaleDateString() : 'Null'}</StyledTableCell>
+                    <StyledTableCell align="right">{book.PublishDate !== null ? new Date(book.PublishDate).toLocaleDateString() : 'Null'}</StyledTableCell>
                     <StyledTableCell align="right">{book.Publisher || 'Null'}</StyledTableCell>
                     <StyledTableCell align="right">{book.Price}</StyledTableCell>
                     <StyledTableCell align="right">

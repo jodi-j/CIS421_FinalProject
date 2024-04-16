@@ -7,11 +7,11 @@ const InsertProduct = () => {
     const [product, setProduct] = useState({
         Name: '',
         Type: '',
-        ISBN: '',
-        Title: '',
-        Author: '',
-        PublishDate: '',
-        Publisher: '',
+        ISBN: null,
+        Title: null,
+        Author: null,
+        PublishDate: null,
+        Publisher: null,
         Price: ''
     });
     const [openSnackbar, setOpenSnackbar] = useState(false);

@@ -56,18 +56,3 @@ insert into Customers values (3, "Michael", "Brown", "(555) 321-7890", "michael.
 insert into Customers values (4, "Sarah", "Davis", "(555) 999-8888", "sarah.davis@example.com", "101 Pine Lane, Villagetown, USA");
 insert into Customers values (5, "William", "Taylor", "(555) 444-3333", "william.taylor@example.com", "202 Maple Street, Countryside, USA");
                               
-
-
-insert into Orders (CustID, Date, TotalPrice, Address) values (1, "2024-04-02", 10.99, "123 Main Street, Anytown, USA");
-insert into Orders values (2, 2, "March 28, 2024", 14.99, "456 Oak Avenue, Smallville, USA");
-insert into Orders values (3, 3, "April 5, 2024", 12.99, "789 Elm Road, Cityville, USA");
-insert into Orders values (4, 4, "April 1, 2024", 4.99, "101 Pine Lane, Villagetown, USA");
-insert into Orders VALUES (5, 5, "March 30, 2024", 19.99, "202 Maple Street, Countryside, USA");
-
-
-insert into OrderDetails values (1, 1, 1);
-insert into OrderDetails Values (2, 5, 1);
-insert into OrderDetails values (3, 7, 1);
-insert into OrderDetails values (4, 9, 1);
-insert into OrderDetails values (5, 10, 1);
-
