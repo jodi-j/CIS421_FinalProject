@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const UpdateInventory = () => {
 
-    const { productID: ProductID } = useParams();
+    const { productID } = useParams();
     const navigate = useNavigate();
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [message, setMessage] = useState('');
@@ -17,7 +17,7 @@ const UpdateInventory = () => {
     useEffect(() => {
         const fetchInventory = async () => {
             try {
-                const url = `http://localhost:5000/getInventory?productID=${ProductID}`;
+                const url = `http://localhost:5000/getInven?productID=${productID}`;
                 const response = await fetch(url, {
                     method: 'GET',
                     headers: {
@@ -38,7 +38,7 @@ const UpdateInventory = () => {
         }
 
         fetchInventory();
-    },[ProductID]);
+    },[productID]);
 
     const handleFieldChange = (fieldName, value) => {
         setInventory(prevInventory => ({

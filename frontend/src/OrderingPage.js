@@ -80,7 +80,7 @@ const OrderingPage = () => {
                     Quantity: item.quantity,
                 };
 
-                const inventoryUpdateResponse = await fetch('http://localhost:5000/updateInventory', {
+                const inventoryUpdateResponse = await fetch('http://localhost:5000/updateInventorySpecific', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

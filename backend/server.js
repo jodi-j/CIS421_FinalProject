@@ -42,6 +42,28 @@ app.get('/getProduct', async (req, res) => {
     });
 });
 
+// SELECT Statement, get one inventory entry
+app.get('/getInven', async (req, res) => {
+
+    const { productID } = req.query;
+    if(!productID){
+      return res.status(400).json({ error: 'ProductID is required'});
+    }
+    pool.query('SELECT * FROM Inventory WHERE ProductID = ?', [productID], async (error, results) => {
+        if (error) {
+          console.error('Error querying database: ' + error.stack);
+          res.status(500).json({ error: 'Internal server error' });
+          return;
+        }
+  
+        if (results.length === 0){
+          return res.status(404).json({ error: 'Product not found'});
+        }
+        console.log('Query results:', results);
+        res.json(results);
+      });
+  });
+
 // DELETE Statement, delete product and all references to it, nested for Inventory and OrderDetails tables
 app.delete('/deleteProduct/:productID', (req, res) => {
   const { productID } = req.params;
@@ -472,7 +494,8 @@ app.put('/updateCustomer', async (req, res) => {
     }
 });
 
-app.post('/updateInventory', (req, res) => {
+// UPDATE Statement, update an inventory entry
+app.post('/updateInventorySpecific', (req, res) => {
     const { ProductID, Quantity } = req.body;
 
     if (!ProductID || !Quantity) {
