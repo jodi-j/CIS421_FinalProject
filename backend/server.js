@@ -472,5 +472,26 @@ app.put('/updateCustomer', async (req, res) => {
     }
 });
 
+app.post('/updateInventory', (req, res) => {
+    const { ProductID, Quantity } = req.body;
+
+    if (!ProductID || !Quantity) {
+        return res.status(400).json({ error: 'OrderID, ProductID, and Quantity are required fields' });
+    }
+    // Update the inventory in the database
+    const sql = 'UPDATE Inventory SET Quantity = Quantity - ? WHERE ProductID = ?';
+  
+    pool.query(sql, [Quantity, ProductID], (err, result) => {
+      if (err) {
+        console.error('Error updating inventory:', err);
+        res.status(500).json({ error: 'Error updating inventory' });
+        return;
+      }
+  
+      console.log('Inventory updated successfully');
+      res.status(200).json({ message: 'Inventory updated successfully' });
+    });
+  });
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {console.log("Server started on port ", PORT)})

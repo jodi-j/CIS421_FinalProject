@@ -73,6 +73,27 @@ const OrderingPage = () => {
               })
           );
 
+          await Promise.all(
+            items.map(async (item) => {
+                const inventoryUpdateData = {
+                    ProductID: item.code,
+                    Quantity: item.quantity,
+                };
+
+                const inventoryUpdateResponse = await fetch('http://localhost:5000/updateInventory', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(inventoryUpdateData),
+                });
+
+                if (!inventoryUpdateResponse.ok) {
+                    throw new Error('Error updating inventory');
+                }
+            })
+        );
+
           setMessage('Order submitted successfully!');
           setSeverity('success');
           setOpenSnackbar(true);

@@ -136,32 +136,39 @@ function OrderDetsTable() {
                     }}
                     >
                     Back
-                </Button>
+                </Button>     
         {/* Product information table */}
-        <TableContainer component={Paper} style={{ width: '80%', margin: 'auto' }}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell>ProductID</StyledTableCell>
-                            <StyledTableCell align="right">Name</StyledTableCell>
-                            <StyledTableCell align="right">Price</StyledTableCell>
-                            {/* Add more columns if needed */}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {products.map((product, index) => (
-                            <StyledTableRow key={index}>
-                                <StyledTableCell component="th" scope="row">
-                                    {product.ID}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">{product.Name}</StyledTableCell>
-                                <StyledTableCell align="right">{product.Price}</StyledTableCell>
-                                {/* Add more cells with product information if needed */}
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+        <TableContainer component={Paper} style={{ width: '80%', margin: 'auto', marginTop: '20px' }}>
+    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+            <TableRow>
+                <StyledTableCell>ProductID</StyledTableCell>
+                <StyledTableCell align="right">Type</StyledTableCell>
+                <StyledTableCell align="right">Name</StyledTableCell>
+                <StyledTableCell align="right">Quantity</StyledTableCell>
+                <StyledTableCell align="right">Price</StyledTableCell> 
+            </TableRow>
+        </TableHead>
+        <TableBody>
+            {products.map((product, index) => {
+                // Find the corresponding order detail for the product
+                const orderDetail = orderDetails.find(detail => detail.ProductID === product.ID);
+                return (
+                    <StyledTableRow key={index}>
+                        <StyledTableCell component="th" scope="row">
+                            {product.ID}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">{product.Type}</StyledTableCell>
+                        <StyledTableCell align="right">{product.Name}</StyledTableCell>
+                        <StyledTableCell align="right">{orderDetail ? orderDetail.Quantity : 0}</StyledTableCell>
+                        <StyledTableCell align="right">{product.Price}</StyledTableCell>
+                    </StyledTableRow>
+                );
+            })}
+        </TableBody>
+    </Table>
+</TableContainer>
+       
     </div>
     </div>
     )
